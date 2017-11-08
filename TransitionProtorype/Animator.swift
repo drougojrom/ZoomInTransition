@@ -48,7 +48,7 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.addSubview(middleView)
         containerView.bringSubview(toFront: cellView)
         UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
-            cellView.center = CGPoint(x: toView.bounds.width / 2, y: finalFrame.midY + 28)
+            cellView.center = CGPoint(x: toView.bounds.width / 2, y: finalFrame.midY + 28)  // TODO: fix magic number (distance from top of screen to final view)
             cellView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
         }) { (_) in
             UIView.animate(withDuration: self.duration, delay: 0.0, options: [.beginFromCurrentState], animations: {
