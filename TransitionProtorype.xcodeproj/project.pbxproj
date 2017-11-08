@@ -66,20 +66,60 @@
 		E00FA6061FB0C12900443B5B /* TransitionProtorype */ = {
 			isa = PBXGroup;
 			children = (
-				E00FA6071FB0C12900443B5B /* AppDelegate.swift */,
-				E00FA6091FB0C12900443B5B /* ViewController.swift */,
-				E00FA61D1FB0C5EC00443B5B /* Animator.swift */,
-				E00FA6191FB0C20F00443B5B /* DetailViewController.swift */,
-				E00FA61B1FB0C39A00443B5B /* TableViewCell.swift */,
 				E00FA60B1FB0C12900443B5B /* Main.storyboard */,
+				E0D9EAF41FB32A54008F5E35 /* Helpers */,
+				E0D9EAF31FB32A48008F5E35 /* Animator */,
+				E0D9EAF21FB32A31008F5E35 /* Views */,
+				E0D9EAF11FB32A15008F5E35 /* Controllers */,
+				E0D9EAEF1FB329FF008F5E35 /* SupportingFiles */,
+			);
+			path = TransitionProtorype;
+			sourceTree = "<group>";
+		};
+		E0D9EAEF1FB329FF008F5E35 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E00FA6071FB0C12900443B5B /* AppDelegate.swift */,
 				E00FA60E1FB0C12900443B5B /* Assets.xcassets */,
 				E00FA6101FB0C12900443B5B /* LaunchScreen.storyboard */,
 				E00FA6131FB0C12900443B5B /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		E0D9EAF11FB32A15008F5E35 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E00FA6091FB0C12900443B5B /* ViewController.swift */,
+				E00FA6191FB0C20F00443B5B /* DetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E0D9EAF21FB32A31008F5E35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E00FA61B1FB0C39A00443B5B /* TableViewCell.swift */,
 				E08EC05E1FB0E0D7006156AA /* SomeView.swift */,
 				E08EC0621FB0E12A006156AA /* SomeView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E0D9EAF31FB32A48008F5E35 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				E00FA61D1FB0C5EC00443B5B /* Animator.swift */,
+			);
+			name = Animator;
+			sourceTree = "<group>";
+		};
+		E0D9EAF41FB32A54008F5E35 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				E08EC0601FB0E10B006156AA /* UIView+Helpers.swift */,
 			);
-			path = TransitionProtorype;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
