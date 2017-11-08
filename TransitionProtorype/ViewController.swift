@@ -54,7 +54,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }) { (_) in
             cell.avatarImage.isHidden = true
         }
-        self.selectedFrame = cell.frame
+        self.selectedFrame = cell.avatarImage.frame
+        self.selectedFrame.origin.y = CGFloat(40 + (indexPath.row * 120))
         selectedIndex = indexPath
         performSegue(withIdentifier: "toDetail", sender: "123")
 
@@ -76,11 +77,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        let someView = SomeView.fromNib()
-        someView.frame = CGRect(x: 16, y: 41, width: 78, height: 78)
-        transition.originFrame = someView.frame
-        
+        transition.originFrame = selectedFrame
         transition.presenting = true
         return transition
     }
