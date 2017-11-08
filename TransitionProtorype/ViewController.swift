@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    let transition = Animator()
     var selectedIndex: IndexPath!
     var selectedFrame: CGRect!
     
@@ -46,7 +45,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
-        
         return cell
     }
     
@@ -85,9 +83,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.originFrame = selectedFrame
-        transition.presenting = true
-        return transition
+        return Animator(duration: 1.5, presenting: true, originFrame: selectedFrame)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {

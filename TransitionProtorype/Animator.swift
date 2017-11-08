@@ -10,9 +10,17 @@ import UIKit
 
 class Animator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let duration = 1.5
-    var presenting = true
-    var originFrame = CGRect.zero
+    let duration: TimeInterval
+    var presenting: Bool
+    var originFrame: CGRect
+    
+    init(duration: TimeInterval, presenting: Bool, originFrame: CGRect) {
+        self.duration = duration
+        self.presenting = presenting
+        self.originFrame = originFrame
+        
+        super.init()
+    }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
