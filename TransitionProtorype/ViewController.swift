@@ -21,6 +21,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.tableView.alpha = 0
+        }
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -29,6 +37,7 @@ class ViewController: UIViewController {
         cell.avatarImage.isHidden = false
         cell.avatarImage.alpha = 1
         cell.setSelected(false, animated: false)
+        tableView.alpha = 1
     }
 }
 

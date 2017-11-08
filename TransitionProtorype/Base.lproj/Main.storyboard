@@ -88,26 +88,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHG-ko-qf1">
-                                <rect key="frame" x="164" y="617" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="back:" destination="eva-h4-2WG" eventType="touchUpInside" id="ROI-ar-RFB"/>
-                                </connections>
-                            </button>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ER2-nT-fbS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHG-ko-qf1">
+                                        <rect key="frame" x="164.5" y="607" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="back:" destination="eva-h4-2WG" eventType="touchUpInside" id="ROI-ar-RFB"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now you see me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyE-dP-6Zo">
+                                        <rect key="frame" x="124.5" y="318" width="126.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="vHG-ko-qf1" firstAttribute="centerX" secondItem="ER2-nT-fbS" secondAttribute="centerX" id="6st-e0-V2X"/>
+                                    <constraint firstAttribute="bottom" secondItem="vHG-ko-qf1" secondAttribute="bottom" constant="30" id="Ki3-gO-lRe"/>
+                                    <constraint firstItem="qyE-dP-6Zo" firstAttribute="centerX" secondItem="ER2-nT-fbS" secondAttribute="centerX" id="M5P-CW-dRe"/>
+                                    <constraint firstItem="qyE-dP-6Zo" firstAttribute="centerY" secondItem="ER2-nT-fbS" secondAttribute="centerY" constant="-5" id="Wlb-ex-h2l"/>
+                                </constraints>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="2uo-cJ-XQi">
-                                <rect key="frame" x="109.5" y="30" width="155" height="155"/>
+                                <rect key="frame" x="110" y="30" width="155" height="155"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="aXx-YB-5fs" firstAttribute="bottom" secondItem="vHG-ko-qf1" secondAttribute="bottom" constant="20" id="OwH-Ta-JuN"/>
-                            <constraint firstItem="2uo-cJ-XQi" firstAttribute="centerX" secondItem="pSC-oi-h3s" secondAttribute="centerX" id="cIm-Fm-Rcj"/>
-                            <constraint firstItem="2uo-cJ-XQi" firstAttribute="top" secondItem="aXx-YB-5fs" secondAttribute="top" constant="10" id="hth-5e-VSS"/>
-                            <constraint firstItem="vHG-ko-qf1" firstAttribute="centerX" secondItem="pSC-oi-h3s" secondAttribute="centerX" id="lg4-hu-YUg"/>
+                            <constraint firstItem="ER2-nT-fbS" firstAttribute="bottom" secondItem="aXx-YB-5fs" secondAttribute="bottom" id="IAM-FO-Shx"/>
+                            <constraint firstItem="2uo-cJ-XQi" firstAttribute="centerX" secondItem="pSC-oi-h3s" secondAttribute="centerX" id="dNH-ff-nbS"/>
+                            <constraint firstItem="ER2-nT-fbS" firstAttribute="top" secondItem="pSC-oi-h3s" secondAttribute="top" id="eEJ-U1-kam"/>
+                            <constraint firstItem="aXx-YB-5fs" firstAttribute="trailing" secondItem="ER2-nT-fbS" secondAttribute="trailing" id="gXe-R5-nhg"/>
+                            <constraint firstItem="ER2-nT-fbS" firstAttribute="leading" secondItem="aXx-YB-5fs" secondAttribute="leading" id="mAl-BT-xWE"/>
+                            <constraint firstItem="2uo-cJ-XQi" firstAttribute="top" secondItem="aXx-YB-5fs" secondAttribute="top" constant="10" id="tZX-q6-4Vq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aXx-YB-5fs"/>
                     </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="ER2-nT-fbS" id="lyf-4x-kXQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPj-bu-iXW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
