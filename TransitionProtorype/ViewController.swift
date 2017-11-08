@@ -49,16 +49,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailViewController
         detailVC.transitioningDelegate = self
         let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: [], animations: {
             cell.avatarImage.alpha = 0
         }) { (_) in
             cell.avatarImage.isHidden = true
         }
-        self.selectedFrame = cell.avatarImage.frame
-        self.selectedFrame.origin.y = CGFloat(40 + (indexPath.row * 120))
+        selectedFrame = cell.avatarImage.frame
+        selectedFrame.origin.y = CGFloat(40 + (indexPath.row * 120))
         selectedIndex = indexPath
         performSegue(withIdentifier: "toDetail", sender: "123")
-
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
