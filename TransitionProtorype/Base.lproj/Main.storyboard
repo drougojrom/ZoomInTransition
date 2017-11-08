@@ -73,6 +73,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="WWm-qx-k0v" id="34P-f2-sDa"/>
+                        <segue destination="eva-h4-2WG" kind="presentation" identifier="toDetail" id="i8k-Ok-lDM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

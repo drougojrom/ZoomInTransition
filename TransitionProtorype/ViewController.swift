@@ -20,6 +20,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let cell = tableView.cellForRow(at: selectedIndex) as! TableViewCell
+
+        cell.avatarImage.isHidden = false
+        cell.avatarImage.alpha = 1
+        cell.setSelected(false, animated: false)
+    }
 }
 
 
@@ -46,11 +56,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         self.selectedFrame = cell.frame
         selectedIndex = indexPath
-        present(detailVC, animated: true, completion: {
-            cell.avatarImage.isHidden = false
-            cell.avatarImage.alpha = 1
-            cell.setSelected(false, animated: false)
-        })
+        performSegue(withIdentifier: "toDetail", sender: "123")
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -60,10 +67,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
     
-        
-        
+        if segue.identifier == "toDetail" {
+            let vc = segue.destination as! DetailViewController
+            vc.transitioningDelegate = self
+        }
     }
-    
 }
 
 extension ViewController: UIViewControllerTransitioningDelegate {
@@ -74,7 +82,6 @@ extension ViewController: UIViewControllerTransitioningDelegate {
         transition.originFrame = someView.frame
         
         transition.presenting = true
-        //selectedImage!.isHidden = true
         return transition
     }
     
