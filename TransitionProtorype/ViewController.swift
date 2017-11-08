@@ -51,7 +51,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -64,7 +64,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell.avatarImage.isHidden = true
         }
         selectedFrame = cell.avatarImage.frame
-        selectedFrame.origin.y = CGFloat(40 + (indexPath.row * 120))
+        selectedFrame.origin = view.convert(CGPoint.zero, from: cell.avatarImage)
         selectedIndex = indexPath
         performSegue(withIdentifier: "toDetail", sender: "123")
     }
