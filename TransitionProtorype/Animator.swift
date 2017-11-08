@@ -23,10 +23,12 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let containerView = transitionContext.containerView
-        var toView: UIView = SomeView.fromNib()
         
-        var cellView = presenting ? toView : transitionContext.view(forKey: .from)!
+        let containerView = transitionContext.containerView
+        let middleView = SomeView.fromNib()
+        let toView = transitionContext.view(forKey: .to)!
+        
+        var cellView = presenting ? middleView : transitionContext.view(forKey: .from)!
         var initialFrame = presenting ? originFrame : cellView.frame
         var finalFrame = presenting ? cellView.frame : originFrame
         
@@ -43,15 +45,13 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
             cellView.clipsToBounds = true
         }
         
-        containerView.addSubview(toView)
+        containerView.addSubview(middleView)
         containerView.bringSubview(toFront: cellView)
         UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
-            cellView.center = CGPoint(x: 187.5, y: finalFrame.midY + 28)
+            cellView.center = CGPoint(x: toView.bounds.width / 2, y: finalFrame.midY + 28)
             cellView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
-            
         }) { (_) in
             UIView.animate(withDuration: self.duration, delay: 0.0, options: [.beginFromCurrentState], animations: {
-                toView = transitionContext.view(forKey: .to)!
                 cellView = self.presenting ? toView : transitionContext.view(forKey: .from)!
                 initialFrame = self.presenting ? self.originFrame : cellView.frame
                 finalFrame = self.presenting ? cellView.frame : self.originFrame
