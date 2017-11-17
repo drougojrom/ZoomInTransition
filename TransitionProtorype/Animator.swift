@@ -13,11 +13,13 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
     let duration: TimeInterval
     var presenting: Bool
     var originFrame: CGRect
+    var finalView: UIView? = nil
     
-    init(duration: TimeInterval, presenting: Bool, originFrame: CGRect) {
+    init(duration: TimeInterval, presenting: Bool, originFrame: CGRect, finalView: UIView?) {
         self.duration = duration
         self.presenting = presenting
         self.originFrame = originFrame
+        self.finalView = finalView
         
         super.init()
     }
@@ -45,21 +47,45 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
             cellView.clipsToBounds = true
         }
         
-        containerView.addSubview(middleView)
-        containerView.bringSubview(toFront: cellView)
-        UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
-            cellView.center = CGPoint(x: toView.bounds.width / 2, y: finalFrame.midY + 28)  // TODO: fix magic number (distance from top of screen to final view)
-            cellView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
-        }) { (_) in
-            UIView.animate(withDuration: self.duration, delay: 0.0, options: [.beginFromCurrentState], animations: {
-                cellView = self.presenting ? toView : transitionContext.view(forKey: .from)!
-                initialFrame = self.presenting ? self.originFrame : cellView.frame
-                finalFrame = self.presenting ? cellView.frame : self.originFrame
-                containerView.addSubview(toView)
-                containerView.bringSubview(toFront: cellView)
-            }, completion: { (_) in
-                transitionContext.completeTransition(true)
-            })
+        if presenting {
+            
+            containerView.addSubview(middleView)
+            containerView.bringSubview(toFront: cellView)
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
+                cellView.center = CGPoint(x: toView.bounds.width / 2, y: finalFrame.midY + 28)  // TODO: fix magic number (distance from top of screen to final view)
+                cellView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
+            }) { (_) in
+                UIView.animate(withDuration: self.duration, delay: 0.0, options: [.beginFromCurrentState], animations: {
+                    cellView = self.presenting ? toView : transitionContext.view(forKey: .from)!
+                    initialFrame = self.presenting ? self.originFrame : cellView.frame
+                    finalFrame = self.presenting ? cellView.frame : self.originFrame
+                    containerView.addSubview(toView)
+                    containerView.bringSubview(toFront: cellView)
+                }, completion: { (_) in
+                    middleView.removeFromSuperview()
+                    transitionContext.completeTransition(true)
+                })
+            }
+        } else {
+            let newSomeView = finalView!
+            containerView.addSubview(newSomeView)
+            containerView.bringSubview(toFront: newSomeView)
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
+                newSomeView.center = CGPoint(x: 15, y: 21)  // TODO: fix magic number (distance from top of screen to final view)
+                newSomeView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+                
+            }) { (_) in
+                UIView.animate(withDuration: self.duration, delay: 0.0, options: [.beginFromCurrentState], animations: {
+                    cellView = self.presenting ? toView : transitionContext.view(forKey: .from)!
+                    initialFrame = self.presenting ? self.originFrame : cellView.frame
+                    finalFrame = self.presenting ? cellView.frame : self.originFrame
+                    containerView.addSubview(toView)
+                    containerView.bringSubview(toFront: cellView)
+                }, completion: { (_) in
+                    middleView.removeFromSuperview()
+                    transitionContext.completeTransition(true)
+                })
+            }
         }
     }
     

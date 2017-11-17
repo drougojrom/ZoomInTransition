@@ -130,6 +130,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="ER2-nT-fbS" id="lyf-4x-kXQ"/>
+                        <outlet property="final" destination="2uo-cJ-XQi" id="Sl9-QA-RaI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPj-bu-iXW" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     var selectedIndex: IndexPath!
     var selectedFrame: CGRect!
     
+    var final: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -61,7 +63,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }) { (_) in
             cell.avatarImage.isHidden = true
         }
-        selectedFrame = cell.avatarImage.frame
+        selectedFrame = cell.avatarImage.bounds
         selectedFrame.origin = view.convert(CGPoint.zero, from: cell.avatarImage)
         selectedIndex = indexPath
         performSegue(withIdentifier: "toDetail", sender: "123")
@@ -83,10 +85,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return Animator(duration: 1.5, presenting: true, originFrame: selectedFrame)
+        let view = UIView(frame: CGRect(x: 110, y: 30, width: 155, height: 155))
+        view.backgroundColor = UIColor.blue
+        return Animator(duration: 1.5, presenting: true, originFrame: selectedFrame, finalView: view)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
+        let view = UIView(frame: CGRect(x: 110, y: 30, width: 155, height: 155))
+        view.backgroundColor = UIColor.blue
+        return Animator(duration: 1.5, presenting: false, originFrame: CGRect(x: 15, y: 21, width: 78, height: 78), finalView: view)
     }
 }

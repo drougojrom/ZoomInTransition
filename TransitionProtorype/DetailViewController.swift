@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var final: UIImageView!
     @IBOutlet weak var backgroundView: UIView!
     
     override func viewDidLoad() {
@@ -40,7 +41,9 @@ class DetailViewController: UIViewController {
     }
     */
     @IBAction func back(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            
+        })
     }
     
 }
