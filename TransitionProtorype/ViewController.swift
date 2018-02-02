@@ -91,8 +91,8 @@ extension ViewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let view = UIView(frame: CGRect(x: 110, y: 30, width: 155, height: 155))
-        view.backgroundColor = UIColor.blue
-        return Animator(duration: 1.5, presenting: false, originFrame: CGRect(x: 15, y: 21, width: 78, height: 78), finalView: view)
+        let view = SomeView.fromNib()
+        view.frame = CGRect(x: 110, y: 30, width: view.bounds.width, height: view.bounds.height)
+        return Animator(duration: 1.5, presenting: false, originFrame: selectedFrame, finalView: view)
     }
 }

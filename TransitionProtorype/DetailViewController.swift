@@ -41,6 +41,7 @@ class DetailViewController: UIViewController {
     }
     */
     @IBAction func back(_ sender: Any) {
+        final.isHidden = true
         self.dismiss(animated: true, completion: {
             
         })
